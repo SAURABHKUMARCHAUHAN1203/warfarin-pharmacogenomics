@@ -4,12 +4,12 @@
 
 ## Authors
 
-- Amir Sams¹ (Joint First Author)
 - Saurabh Kumar Chauhan¹* (Joint First / Co-Corresponding) — ORCID: 0009-0004-8496-8445
+- Amir Sams¹ (Joint First Author)
 - Maliha Khan¹
 - Suruchi Singh¹* (Senior / Co-Corresponding) — ORCID: 0000-0001-8553-6725
 
-¹ Department of Pharmaceutical Sciences, Sam Higginbottom University of Agriculture, Technology and Sciences (SHUATS), Prayagraj, India
+¹Department of Pharmacology, School of Pharmaceutical Education and Research, Jamia Hamdard, Hamdard Nagar, New Delhi 110062, India
 
 ## Overview
 
