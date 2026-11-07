@@ -1,0 +1,13 @@
+Variable,Total N,Missing N,Missing %
+Height (cm),5700,1146,20.1
+Weight (kg),5700,287,5.0
+Age,5700,42,0.7
+CYP2C9 consensus,5700,144,2.5
+VKORC1 -1639 consensus,5700,1499,26.3
+Race (OMB),5700,0,0.0
+Amiodarone (Cordarone),5700,1518,26.6
+Carbamazepine (Tegretol),5700,3270,57.4
+Phenytoin (Dilantin),5700,3276,57.5
+Rifampin or Rifampicin,5700,3277,57.5
+Therapeutic Dose of Warfarin,5700,172,3.0
+Subject Reached Stable Dose of Warfarin,5700,49,0.9

@@ -1,0 +1,15 @@
+Model,Cohort,Calibration Slope,Calibration Intercept
+MLR,Main,1.099,-2.44
+MLR,Asian,0.781,6.4
+Ridge,Main,1.1,-2.47
+Ridge,Asian,0.783,6.35
+Lasso,Main,1.096,-2.12
+Lasso,Asian,0.813,5.62
+SVR (RBF),Main,1.014,0.7
+SVR (RBF),Asian,0.817,4.39
+RF (Default),Main,0.877,4.9
+RF (Default),Asian,0.594,9.43
+RF (Tuned),Main,1.13,-3.29
+RF (Tuned),Asian,0.858,3.3
+XGBoost,Main,1.055,-1.02
+XGBoost,Asian,0.806,4.82

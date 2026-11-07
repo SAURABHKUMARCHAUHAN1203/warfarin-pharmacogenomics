@@ -1,0 +1,11 @@
+Step,N
+Total records,5700
+After stable dose filter,5425
+After dose not null,5410
+After dose < 300,5409
+After CYP2C9 not null,5294
+After VKORC1 not null,3916
+After height not null,3508
+After weight not null,3480
+After age not null,3449
+After age parsed,3449

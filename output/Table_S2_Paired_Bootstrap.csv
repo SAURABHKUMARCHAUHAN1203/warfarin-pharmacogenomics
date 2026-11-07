@@ -1,0 +1,7 @@
+Model vs MLR,dMAE,95% CI,Significant
+Ridge,+0.001,"[-0.007, +0.010]",No
+Lasso,+0.141,"[+0.011, +0.283]",Yes
+SVR (RBF),+0.078,"[-0.071, +0.235]",No
+RF (Default),+0.800,"[+0.476, +1.147]",Yes
+RF (Tuned),+0.320,"[+0.116, +0.542]",Yes
+XGBoost,+0.236,"[+0.077, +0.412]",Yes
