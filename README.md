@@ -9,7 +9,7 @@
 - Maliha Khan¹
 - Suruchi Singh¹* (Senior / Co-Corresponding) — ORCID: 0000-0001-8553-6725
 
-¹Department of Pharmacology, School of Pharmaceutical Education and Research, Jamia Hamdard, Hamdard Nagar, New Delhi 110062, India
+¹ Department of Pharmacology, School of Pharmaceutical Education and Research, Jamia Hamdard, Hamdard Nagar, New Delhi 110062, India
 
 ## Overview
 

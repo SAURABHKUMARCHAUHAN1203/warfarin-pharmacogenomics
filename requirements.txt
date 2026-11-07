@@ -1,0 +1,8 @@
+# Warfarin Pharmacogenomics — Verified Analysis Environment
+# These are the exact versions used for the final published results.
+python-dateutil>=2.8
+scikit-learn==1.9.1
+pandas==3.0.6
+numpy==2.4.6
+xgboost==3.2.0
+scipy>=1.11

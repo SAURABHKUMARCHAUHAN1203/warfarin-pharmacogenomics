@@ -1,10 +1,20 @@
 """
 DEFINITIVE WARFARIN 7-MODEL PIPELINE
 =====================================
-Uses manuscript Table 2 hyperparameters.
+Uses optimised hyperparameters from manuscript Table 2. The hyperparameter
+search that identified these values is implemented in
+warfarin_7model_complete.ipynb.
+
 All metrics computed on mg/week scale (back-transformed from sqrt).
+Hyperparameter tuning minimised MAE on the square-root scale; all reported
+performance metrics were computed after back-transformation.
+Negative square-root predictions are clipped to zero before back-transformation.
+
 Produces ALL tables and figures for publication.
 Saves everything to Excel workbook + CSVs.
+
+Environment: Python 3.11.9, scikit-learn 1.9.1, pandas 3.0.6,
+             NumPy 2.4.6, XGBoost 3.2.0 (see requirements.txt).
 """
 import pandas as pd
 import numpy as np
@@ -236,8 +246,8 @@ print(df_table3.to_string(index=False))
 # ════════════════════════════════════════════════════════════════════════
 # 6. BOOTSTRAP 95% CIs (1000 iterations)
 # ════════════════════════════════════════════════════════════════════════
-print("\n\nComputing bootstrap CIs (1000 iterations)...")
-N_BOOT = 1000
+print("\n\nComputing bootstrap CIs (2000 iterations)...")
+N_BOOT = 2000
 boot_results_main = {name: {'MAE': [], 'RMSE': [], 'R2': [], 'P20': []} for name in models}
 boot_results_asian = {name: {'MAE': [], 'RMSE': [], 'R2': [], 'P20': []} for name in models}
 boot_delta_mae = {name: [] for name in models}  # ΔMAE vs MLR
@@ -312,7 +322,7 @@ for name, model_template in models.items():
     model_cv = copy.deepcopy(model_template)
 
     use_scaled = 'SVR' in name
-    X_all = X_main.values if not use_scaled else scaler.fit_transform(X_main)
+    X_all = X_main.values
     y_all = y_main_sqrt
 
     maes, rmses, r2s, p20s = [], [], [], []
@@ -320,6 +330,12 @@ for name, model_template in models.items():
         Xtr_cv, Xval_cv = X_all[train_idx], X_all[val_idx]
         ytr_cv, yval_cv_sqrt = y_all[train_idx], y_all[val_idx]
         yval_actual = yval_cv_sqrt ** 2
+
+        # Scale inside fold for SVR to prevent information leakage
+        if use_scaled:
+            fold_scaler = StandardScaler().fit(Xtr_cv)
+            Xtr_cv = fold_scaler.transform(Xtr_cv)
+            Xval_cv = fold_scaler.transform(Xval_cv)
 
         model_fresh = copy.deepcopy(model_template)
         model_fresh.fit(Xtr_cv, ytr_cv)
@@ -426,12 +442,16 @@ scatter_asian = pd.DataFrame({
 })
 
 # ════════════════════════════════════════════════════════════════════════
-# 14. FIGURE DATA: RF IMPORTANCE
+# 14. FIGURE DATA: RF PERMUTATION IMPORTANCE
 # ════════════════════════════════════════════════════════════════════════
 rf_tuned = models['RF (Tuned)']
 imp_rows = []
-for feat, imp in zip(X_train.columns, rf_tuned.feature_importances_):
-    imp_rows.append({'Feature': feat, 'Importance': round(imp, 4)})
+from sklearn.inspection import permutation_importance
+perm_result = permutation_importance(rf_tuned, X_test.values, y_test_sqrt,
+                                     n_repeats=30, random_state=SEED,
+                                     scoring='neg_mean_absolute_error')
+for feat, imp in zip(X_train.columns, perm_result.importances_mean):
+    imp_rows.append({'Feature': feat, 'Importance': round(abs(imp), 4)})
 df_imp = pd.DataFrame(imp_rows).sort_values('Importance', ascending=False)
 
 # ════════════════════════════════════════════════════════════════════════
