@@ -81,7 +81,3 @@ The IWPC (International Warfarin Pharmacogenetics Consortium) dataset contains 5
 
 This project is for academic/research purposes.
 
-## Citation
-
-If you use this code, please cite:
-> Sams A, Chauhan SK, Khan M, Singh S. Comparative evaluation of machine learning algorithms for warfarin dose prediction using pharmacogenomics data. *Pharmacol Res Perspect*. 2026.
